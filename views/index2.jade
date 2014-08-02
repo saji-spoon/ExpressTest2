@@ -1,0 +1,75 @@
+doctype html
+html(lang='en')
+head
+	meta(charset='utf-8')
+	meta(http-equiv='X-UA-Compatible', content='IE=edge')
+	meta(name='viewport', content='width=device-width, initial-scale=1')
+	title= title
+	link(href="stylesheets/bootstrap.min.css", rel='stylesheet')
+	//jQuery(プレーヤー用)	
+	script(src="http://code.jquery.com/jquery-1.10.1.min.js")
+	script(src="javascripts/jquery.jplayer.min.js")
+	
+	link(href="stylesheets/bluemonday/jplayer.blue.monday.css", rel='stylesheet')
+	
+	//bootStrapのレイアウトでコンテンツが隠れないように
+	style(type="text/css")
+		|body
+		|{
+		|padding-top:60px;
+		|}
+		
+	script.
+		jQuery(function($){
+			$("#jquery_jplayer_1").jPlayer({
+						ready: function () {
+							$(this).jPlayer("setMedia", {
+								mp3: "SouthernCross.mp3",
+							});
+						},
+						volume:0.2,
+						swfPath: "/javascripts",
+						supplied: "mp3",
+						autoPlay: true
+					});
+		});		
+		
+body
+	div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+		div.navbar-header
+			a.navbar-brand(href='#/Ayas')=title
+		div.container			
+	div.
+			<!--ここから-->
+			<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+			<div id="jp_container_1" class="jp-audio">
+				<div class="jp-type-single">
+					<div class="jp-gui jp-interface">
+						<ul class="jp-controls"><!--コントロール部分-->
+							<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+							<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+							<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+						<div class="jp-progress"><!--プログレスバー部分-->
+							<div class="jp-seek-bar">
+								<div class="jp-play-bar"></div>
+							</div>
+						</div>
+						<div class="jp-volume-bar"><!--ボリュームバー部分-->
+							<div class="jp-volume-bar-value"></div>
+						</div>
+						<div class="jp-time-holder"><!--時間表示部分-->
+							<div class="jp-current-time"></div>
+							<div class="jp-duration"></div>
+						</div>
+					</div>
+					<div class="jp-no-solution"><!--アップデートを促す表示部分-->
+						<span>Update Required</span>
+						To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+					</div>
+				</div>
+			</div>
+			<!--ここまで-->	
+	a(href="./")元に戻す
+
+
+		

@@ -1,0 +1,60 @@
+doctype html
+html(lang='en')
+head
+	meta(charset='utf-8')
+	meta(http-equiv='X-UA-Compatible', content='IE=edge')
+	meta(name='viewport', content='width=device-width, initial-scale=1')
+	title= title
+	link(href="stylesheets/bootstrap.min.css", rel='stylesheet')
+	style(type="text/css")
+		|body
+		|{
+		|padding-top:60px;
+		|}	
+body
+	div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+		div.navbar-header
+			a.navbar-brand(href='#/Ayas')=title
+		div.container
+		
+	section.container
+		//audioタグとプレイヤー
+		div.row
+			div.col-md-5 
+				audio(src="SouthernCross.mp3", controls, id="au", autoplay)
+		//プログレスバー
+		div.row
+			div.col-md-2 
+				progress(max=100, min=0, id="seek")
+		//音量調整スライドバー
+		div.row
+			div.col-md-2 
+				input(type="range", id="slider", value=50)
+				
+	a(href="./jPlayer") jPlayer案
+	br
+	a(href="./angular") angular練習
+	//プログレスバーと音量調整スライドバーのためのjavascript
+	script(type="text/javascript").
+		var au = document.getElementById('au');
+		au.volume = 0.2;
+		
+		var prog = document.getElementById('seek');
+		prog.value = 0;
+		
+		var slider = document.getElementById('slider');
+		
+		slider.addEventListener("change", function()
+		{
+			var setVolume = slider.value/100.0;
+			au.volume = setVolume;
+		}, false);
+		
+		var timer = setInterval(function()
+		{
+			var per = au.currentTime/au.duration*100.0;
+			prog.value = per;
+		}, 500);
+
+
+		
